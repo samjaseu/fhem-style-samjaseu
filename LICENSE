@@ -1,25 +1,3 @@
-# fhem-style-samjaseu
-Custom Style for your FHEM project
-
-- look and feel adaptation
-
-
-
-## Installation
-```
-update add https://raw.githubusercontent.com/samjaseu/fhem-style-samjaseu/master/controls_samjas_theme.txt
-update check samjas_theme
-update all samjas_theme
-```
-
-### JS File aktivieren
-```
-attr WEB JavaScripts codemirror/fhem_codemirror.js samjaseu/custom.js
-```
-
-
-## License
-
 MIT License
 
 Copyright (c) 2018 Wegscheider IT-Services <contact@samjas.eu>
