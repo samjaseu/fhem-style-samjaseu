@@ -20,4 +20,4 @@ find $DIRS -type f \( ! -iname ".*" \) -print0 | while IFS= read -r -d '' f;
 # CHANGED file
 echo "samjas FHEM Theme last change:" > CHANGED
 echo $(date +"%Y-%m-%d") >> CHANGED
-echo " - $(git log origin/master --pretty=%B)" >> CHANGED
+echo " - $(git log master --pretty=%B)" >> CHANGED

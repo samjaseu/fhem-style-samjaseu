@@ -1,6 +1,3 @@
-/* test */
-
-
 @charset "UTF-8";
 @import url(https://fonts.googleapis.com/css?family=IBM+Plex+Sans);
 @import url(https://fonts.googleapis.com/css?family=IBM+Plex+Mono);
@@ -211,7 +208,8 @@ textarea#console { white-space: normal; margin-top: 10px; margin-bottom: 10px; b
 #menu table.room { border: none; border-spacing: 0; margin-bottom: 10px; }
 #menu table.room .custom-menu-entry { color: #4f83cc;background-color:white;margin-top:20px; }
 #menu table.room .custom-menu-entry:hover { color: #fff;background-color:grey; }
-#menu table.room img.icon, #menu table.room svg.icon { width: 20px; height: 20px; margin: 0; position: absolute; right: 10px; top: 7px; }
+#menu table.room img.icon, #menu table.room svg.icon { width: 20px; height: 20px; margin: 0; position: absolute; right: 10px; top: 7px; fill:white; }
+.menu_Save_config a:hover > svg.icon.message_attention {fill:red !important;}
 #menu table.room #saveCheck { margin-top: -36px; background: transparent; color: red; border-right: 5px red solid; border-left: 5px red solid; border-bottom: 1px transparent; text-indent: -9999px; margin-left: 220px; }
 #menu table.room tr.sel a { background: #4f83cc; color: #fff; }
 #menu table.room tr.sel svg.icon { fill: #fff; }
