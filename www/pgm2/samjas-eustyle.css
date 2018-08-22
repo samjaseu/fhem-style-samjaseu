@@ -31,6 +31,7 @@ button.dist { border: 0; cursor: pointer; margin: 10px; }
 #logo { background: url(../samjaseu/images/samjaseu.png) no-repeat; height: 120px; margin-left: 20px; margin-top: 10px; position: fixed; width: 260px; }
 #logo .theme-version { opacity: 0.7; }
 #logo .theme-version:before { content: "v."; }
+#logo #clock { opacity: 0.7;position:absolute;right:0px;top:0px; }
 
 #content, #right { bottom: 20px; left: 180px; position: absolute; right: 10px; top: 50px; }
 

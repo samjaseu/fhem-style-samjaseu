@@ -1,17 +1,39 @@
+function getClock() {
+    var dateClock = new Date();
+    datehour = dateClock.getHours();
+    datemin = dateClock.getMinutes();
+    
+    if (datehour <= 9) {
+        datehour = '0' + datehour;
+    }
+
+    if (datemin <= 9) {
+        datemin = '0' + datemin;
+    }
+
+    document.getElementById('clock').innerHTML = datehour + ':' + datemin + ' Uhr';
+
+    setTimeout(getClock, 1000);
+}
+
 jQuery(document).ready(function ($) {
 
-    var themeVersion = '1.1';
+    var themeVersion = '1.2';
 
 
     // Check für JS-Installation entfernen
     $('#hdr').addClass('js-installed');
 
-    // Add version to logo
+    // Add version and clock to logo
     $('#logo').append(
         $('<span class="theme-version">' + themeVersion + '</span>')
+    ).append(
+        $('<span id="clock"></span>')
     );
+   window.addEventListener('load', getClock, false);
 
-	// Clear spaces
+
+    // Clear spaces
     $('#content .devType, #menu .room a').each(function() {
     	$(this).html($(this).html().replace(/&nbsp;/g, ''));
     });
@@ -59,4 +81,71 @@ jQuery(document).ready(function ($) {
     $('.roomoverview .col1, .makeTable .col1').each(function(index) {
         $(this).parent().addClass('first-table-column');
     });
+
+    // hide elements by name
+    if (document.URL.indexOf("showall") != -1) {
+        //don't hide anything
+    } else {
+        $("div.devType:contains('-hidden')").parent('td').hide();
+    }
+
+    (function($, window, document, undefined) {
+        'use strict';
+
+        var elSelector = '#hdr, #logo',
+            elClassHidden = 'header--hidden',
+            throttleTimeout = 50,
+            $element = $(elSelector);
+
+        if (!$element.length) return true;
+
+        var $window = $(window),
+            wHeight = 0,
+            wScrollCurrent = 0,
+            wScrollBefore = 0,
+            wScrollDiff = 0,
+            $document = $(document),
+            dHeight = 0,
+            throttle = function(delay, fn) {
+                var last, deferTimer;
+                return function() {
+                    var context = this, args = arguments, now = +new Date;
+                    if(last && now < last + delay) {
+                        clearTimeout(deferTimer);
+                        deferTimer = setTimeout(
+                            function() {
+                                last = now;
+                                fn.apply(context, args);
+                            },
+                            delay
+                        );
+                    } else {
+                        last = now;
+                        fn.apply(context, args);
+                    }
+                };
+            };
+
+        $window.on('scroll', throttle(throttleTimeout, function() {
+            dHeight = $document.height();
+            wHeight	= $window.height();
+            wScrollCurrent = $window.scrollTop();
+            wScrollDiff = wScrollBefore - wScrollCurrent;
+
+            if (wScrollCurrent <= 50) {
+                $element.removeClass(elClassHidden);
+            } else if (wScrollDiff > 0 && $element.hasClass(elClassHidden)) {
+                $element.removeClass(elClassHidden);
+            } else if (wScrollDiff < 0) {
+                if (wScrollCurrent + wHeight >= dHeight && $element.hasClass(elClassHidden)) {
+                    $element.removeClass(elClassHidden);
+                } else {
+                    $element.addClass(elClassHidden);
+                }
+            }
+
+            wScrollBefore = wScrollCurrent;
+        }));
+
+    })(jQuery, window, document);
 });
